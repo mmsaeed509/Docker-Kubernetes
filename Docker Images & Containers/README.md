@@ -124,4 +124,84 @@ docker rmi 2e1b68f731f5
 
 # remove unused images #
 docker image prune
+docker image prune -a
+```
+___
+
+- Copying Files from/into a container
+  - ***NOTE***: it will create the path if it doesn't exist
+  - `docker cp <src> <des>`
+    - for `<src>` & `<des>` container:
+    - `<CONTAINER_ID:PATH or CONTAINER_NAME:PATH>`
+  
+```bash
+# Copying Files into a container #
+docker cp <src> <CONTAINER_ID:PATH or CONTAINER_NAME:PATH>
+
+
+docker cp push.sh 246728e7b25f:/test
+docker cp push.sh sweet_rhodes:/test
+
+# Copying Files from a container #
+docker cp <CONTAINER_ID:PATH or CONTAINER_NAME:PATH> <des>
+
+docker cp 246728e7b25f:/test/push.sh ./
+docker cp sweet_rhodes:/test/push.sh ./
+```
+___
+
+### Naming Containers & Tagging Images(naming imgs)
+
+- Naming Containers
+
+```bash
+docker run --name <name> <IMAGE_ID or IMAGE_TAG>
+
+docker run --name nodeJSApp b211bbfa3d4a5ea
+docker run -p 3000:80 --name NodeJSApp b211bbfa3d4a5ea
+
+```
+- Tagging Images
+  - consist of two parts `name` & `tag` (`name`:`tag`)
+    - `name` : for defining an image or a group of images
+    - `tag`  : for defining a specialized image within a group of images or defining the version of an image
+      - `tag` can be a word or a number, totally up to you
+    - Combined them: A unique identifier
+
+```bash
+docker build . -t <name>:<tag>
+
+docker build . -t wolf-node:latest
+docker build . -t wolf-node:13
+
+# rename image #
+docker tag <old-tag> <new-tag>
+docker tag <old-tag> <docker_hub_id/repo_name:tag>
+
+docker tag wolf-node:13 mmsaeed509/wolf-node:latest
+docker tag wolf-node:13 mmsaeed509/wolf-node:16
+docker tag wolf-node:13 mmsaeed509/wolf-node
+```
+___
+
+- Pushing Images to Docker Hub
+  - login to docker
+  - push the image
+
+```bash
+docker login
+
+docker push <img-name>
+
+docker push mmsaeed509/wolf-node:latest
+```
+___
+
+- Pull Images from Docker Hub
+
+```bash
+docker pull <img-name>:<tag>
+
+docker pull alpine # pull the latest img #
+docker pull mmsaeed509/wolf-node:15
 ```
