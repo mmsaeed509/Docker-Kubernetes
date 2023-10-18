@@ -32,4 +32,6 @@ Bind mounts and volumes serve similar purposes in Docker, but there are some key
    - **Bind Mounts:** Less portable because they depend on the host's directory structure.
    - **Volumes:** More portable as Docker manages them, allowing easier migration between different environments or hosts.
 
+![](../imgs/1.png)
+
 In summary, bind mounts are suitable for scenarios where simplicity and direct host access are more important, such as development and debugging. Volumes, on the other hand, are a better choice for production use cases that require data management, portability, and the ability to work across different environments.
