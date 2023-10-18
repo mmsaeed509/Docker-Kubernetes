@@ -47,3 +47,20 @@ Bind mounts and volumes serve similar purposes in Docker, but there are some key
 ![](./imgs/1.png)
 
 ![](./imgs/2.png)
+
+___
+
+You can add more "**to-be-ignored**" files and folders to your `.dockerignore` file.
+
+For example, consider adding the following to entries:
+
+```
+Dockerfile
+.git
+```
+
+This would ignore the `Dockerfile` itself as well as a potentially existing `.git` folder (if you are using Git in your project).
+
+In general, you want to add anything which isn't required by your application to execute correctly.
+
+
