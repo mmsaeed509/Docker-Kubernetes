@@ -63,4 +63,3 @@ This would ignore the `Dockerfile` itself as well as a potentially existing `.gi
 
 In general, you want to add anything which isn't required by your application to execute correctly.
 
-
