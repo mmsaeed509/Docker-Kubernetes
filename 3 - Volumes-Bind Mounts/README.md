@@ -63,3 +63,80 @@ This would ignore the `Dockerfile` itself as well as a potentially existing `.gi
 
 In general, you want to add anything which isn't required by your application to execute correctly.
 
+___
+
+### Environment Variables & ".env" Files & Security
+
+One important note about **environment variables and security**: Depending on which kind of data you're storing in your environment variables, you might not want to include the secure data directly in your `Dockerfile`.
+
+Instead, go for a separate environment variables file which is then only used at runtime (i.e. when you run your container with `docker run`).
+
+Otherwise, the values are "baked into the image" and everyone can read these values via `docker history <image>`.
+
+For some values, this might not matter but for credentials, private keys etc. you definitely want to avoid that!
+
+If you use a separate file, the values are not part of the image since you point at that file when you run `docker run`. But make sure you don't commit that separate file as part of your source control repository, if you're using source control.
+
+you can add `.env` to add all **Environment Variables**
+
+```Docker
+PORT=80
+NAME=env-img
+```
+
+___
+
+### Docker Build Arguments (ARG)
+
+Docker build arguments, often defined using the `ARG` instruction in a Dockerfile, allow you to parameterize your image builds. These arguments are set at build time and can be useful for customizing the build process or making images more flexible. Here's a summary of how to use Docker build arguments:
+
+#### Define an ARG
+
+To define a build argument in a Dockerfile, use the following syntax:
+
+```Dockerfile
+ARG <name>[=<default>]
+```
+
+- `<name>`: The name of the argument. This can be referenced later in the Dockerfile.
+- `<default>` (optional): The default value for the argument if it's not provided during the build. If not specified, the argument is considered mandatory.
+
+Example:
+
+```Dockerfile
+ARG APP_VERSION=1.0
+```
+
+#### Set ARG Values during Build
+
+When building an image, you can set the values for the defined build arguments using the `--build-arg` flag with the `docker build` command:
+
+```bash
+docker build --build-arg <name>=<value> -t <image_name> <path_to_Dockerfile_directory>
+```
+
+- `<name>`: The name of the argument you want to set.
+- `<value>`: The value to assign to the argument.
+
+Example:
+
+```bash
+docker build --build-arg APP_VERSION=2.0 -t myapp:latest .
+```
+
+#### Use ARG Values in Dockerfile
+
+You can reference the values of build arguments within your Dockerfile using the `${<name>}` syntax:
+
+```Dockerfile
+ENV APP_VERSION=${APP_VERSION}
+```
+
+#### Best Practices
+
+- Use build arguments to make your Dockerfile more dynamic and adaptable.
+- Document the available build arguments in your Dockerfile.
+- Provide default values for optional build arguments.
+- Use meaningful names for build arguments to improve clarity.
+
+Docker build arguments can be a powerful tool for customizing your Docker image builds and making them more versatile and maintainable.
