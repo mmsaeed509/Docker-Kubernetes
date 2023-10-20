@@ -140,3 +140,7 @@ ENV APP_VERSION=${APP_VERSION}
 - Use meaningful names for build arguments to improve clarity.
 
 Docker build arguments can be a powerful tool for customizing your Docker image builds and making them more versatile and maintainable.
+
+# Module Summary
+
+![Module Summary](./imgs/ModuleSummary.png)
