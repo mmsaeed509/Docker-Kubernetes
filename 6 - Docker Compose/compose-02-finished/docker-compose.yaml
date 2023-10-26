@@ -1,0 +1,64 @@
+#####################################
+#                                   #
+#  @author      : 00xWolf           #
+#    GitHub    : @mmsaeed509       #
+#    Developer : Mahmoud Mohamed   #
+#  﫥  Copyright : Mahmoud Mohamed   #
+#                                   #
+#####################################
+
+version: "3.8"
+
+# containers #
+services:
+
+  # mongodb container #
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    env_file:
+      - ./env/mongo.env
+
+
+  # backend container #
+  goals-backend:
+    image: 'goals-node'
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - logs:/app/logs
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: secret
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+
+  # frontend container #
+  goals-frontend:
+    image: 'goals-react'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - goals-backend
+    # start service (container) in interactive mode `it` #
+    stdin_open: true
+    tty: true
+
+# adding named volumes #
+volumes:
+  data:
+  logs:
