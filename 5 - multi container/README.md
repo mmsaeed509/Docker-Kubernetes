@@ -53,7 +53,7 @@ docker ps -a
 docker stop goals-frontend goals-backend mongodb
 
 # list all volume  #
-docker volume ls
+docker volume ls 
 # remove all volume #
 docker volume prune -a
 # or
