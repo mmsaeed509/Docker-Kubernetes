@@ -14,45 +14,39 @@ services:
 
   # server container #
   server:
+
     image: 'nginx:stable-alpine'
+
     ports:
       - '8000:80'
 
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
   # php container #
   php:
-    image: 'goals-node'
+
     build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - '80:80'
+      context: ./dockerFiles
+      dockerfile: php.dockerfiles
+
     volumes:
-      - logs:/app/logs
-      - /app/node_modules
-      - ./backend:/app
-    environment:
-      MONGODB_USERNAME: root
-      MONGODB_PASSWORD: secret
+      - ./src:/var/www/html:delegated
+
+  # mysql container #
+  mysql:
+
+    image: 'mysql:5.7'
+
     env_file:
-      - ./env/backend.env
-    depends_on:
-      - mongodb
+      - ./env/mysql.env
 
+  # composer container #
+  composer:
 
-  # frontend container #
-  goals-frontend:
-    image: 'goals-react'
-    ports:
-      - '3000:3000'
+    build:
+      context: ./dockerFiles
+      dockerfile: composer.dockerfile
+
     volumes:
-      - ./frontend/src:/app/src
-    depends_on:
-      - goals-backend
-    # start service (container) in interactive mode `it` #
-    stdin_open: true
-    tty: true
-
-# adding named volumes #
-volumes:
-  data:
-  logs:
+      - ./src:/var/www/html
