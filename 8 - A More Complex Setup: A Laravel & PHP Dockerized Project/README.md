@@ -1,1 +1,0 @@
-### Complex Setup: A Laravel & PHP Dockerized Project

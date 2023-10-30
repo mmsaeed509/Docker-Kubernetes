@@ -21,14 +21,19 @@ services:
       - '8000:80'
 
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./src:/var/www/html
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+    depends_on:
+      - php
+      - mysql
 
   # php container #
   php:
 
     build:
-      context: ./dockerFiles
-      dockerfile: php.dockerfiles
+      context: .
+      dockerfile: ./dockerFiles/php.dockerfile
 
     volumes:
       - ./src:/var/www/html:delegated

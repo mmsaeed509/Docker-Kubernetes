@@ -7,8 +7,12 @@
 #                                   #
 #####################################
 
-FROM php:7.4-fpm-alpine
+FROM composer:2.5.7
+
+RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
+
+USER laravel
 
 WORKDIR /var/www/html
 
-RUN docker-php-ext-install pdo pdo_mysql
+ENTRYPOINT [ "composer", "--ignore-platform-reqs" ]
