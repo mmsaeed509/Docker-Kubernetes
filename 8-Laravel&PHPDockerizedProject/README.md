@@ -13,4 +13,7 @@ docker compose up -d server php mysql
 
 # or #
 docker compose up -d server
+
+# use `--build` to force rebuild if something changed  #
+docker compose up -d --build server
 ```
