@@ -48,3 +48,20 @@ $ minikube service first-app
 |-----------|-----------|-------------|---------------------------|
 🎉  Opening service default/first-app in default browser...
 ```
+- Scaling
+  - a **Replica** is simply an instance of a pod/container.
+  - `5` **Replica** means that the same pod/container is running 3 times
+
+```Bash
+kubectl scale deployment/first-app --replicas=5 
+```
+
+- update deployments (e.g the image is updated)
+  - `kubectl set image <deployment_name> <container_name>=<new_image_name>`
+  - `kubectl set image deployment/first-app kub-1-app-img=mmsaeed509/kub-1-app-img`
+
+```Bash
+kubectl set image deployment/first-app kub-1-app-img=mmsaeed509/kub-1-app-img
+# roll out the deployment #
+kubectl rollout status deployment/first-app
+```
