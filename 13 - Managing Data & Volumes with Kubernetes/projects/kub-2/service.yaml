@@ -1,0 +1,21 @@
+#####################################
+#                                   #
+#  @author      : 00xWolf           #
+#    GitHub    : @mmsaeed509       #
+#    Developer : Mahmoud Mohamed   #
+#  﫥  Copyright : Exodia OS         #
+#                                   #
+#####################################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: story-service
+spec:
+  selector: 
+    app: story-container-template
+  type: LoadBalancer
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000

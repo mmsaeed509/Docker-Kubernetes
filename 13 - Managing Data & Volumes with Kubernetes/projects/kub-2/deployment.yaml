@@ -1,0 +1,32 @@
+#####################################
+#                                   #
+#  @author      : 00xWolf           #
+#    GitHub    : @mmsaeed509       #
+#    Developer : Mahmoud Mohamed   #
+#  﫥  Copyright : Exodia OS         #
+#                                   #
+#####################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: story-deployment
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: story-container-template-emptyDir
+  template:
+    metadata:
+      labels:
+        app: story-container-template-emptyDir
+    spec:
+      containers:
+        - name: story-container-emptyDir
+          image: mmsaeed509/kub-data-demo-emptydir:v1
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          emptyDir: {}
