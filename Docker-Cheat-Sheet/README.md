@@ -1,6 +1,6 @@
 <h3 align="center"> Docker Cheat Sheet </h3>
 
-## Commands
+### Commands
 
 | Docker Command                                                                                           | Command Description                                                                                                            | Example                                                                                                                                                          |
 |----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -47,7 +47,7 @@
 | `docker exec -it <container_name> <command>`                                                             | to execute command inside the container use `dokcer exec`                                                                      | `docker exec -it node-react npm init`                                                                                                                            |
 | `docker compose exec <command>` <br> `docker compose run <service_name> <command>`                       | to execute command inside the container use `dokcer compse`                                                                    | `docker compose exec init` <br> `docker compose run npm init`                                                                                                    |
 
-## Arguments (Parameters)
+### Arguments (Parameters)
 
 | Argument                                                                  | Description                                                         | Example                                                      |
 |---------------------------------------------------------------------------|---------------------------------------------------------------------|--------------------------------------------------------------|
