@@ -65,7 +65,7 @@ attaches you to a running Container with an ID or name of `CONTAINER`.
 ___
 
 - interact with the container `rng.py`
-  - `-i` for interactve
+  - `-i` for interactive
   - `-t` to allocate a pseudo TTY(terminal)
 
 ```bash
@@ -78,7 +78,7 @@ Please enter the max number: 33
 # output #
 28
 
-# restart container with attaced mode (interact with the container) #
+# restart container with attached mode (interact with the container) #
 docker start -ai <CONTAINER_ID or CONTAINER_NAME>
 
 docker start -ai 1ec44b011c54
@@ -139,14 +139,14 @@ ___
 docker cp <src> <CONTAINER_ID:PATH or CONTAINER_NAME:PATH>
 
 
-docker cp push.sh 246728e7b25f:/test
-docker cp push.sh sweet_rhodes:/test
+docker cp git-push.sh 246728e7b25f:/test
+docker cp git-push.sh sweet_rhodes:/test
 
 # Copying Files from a container #
 docker cp <CONTAINER_ID:PATH or CONTAINER_NAME:PATH> <des>
 
-docker cp 246728e7b25f:/test/push.sh ./
-docker cp sweet_rhodes:/test/push.sh ./
+docker cp 246728e7b25f:/test/git-push.sh ./
+docker cp sweet_rhodes:/test/git-push.sh ./
 ```
 ___
 
