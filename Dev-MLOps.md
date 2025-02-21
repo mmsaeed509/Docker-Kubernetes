@@ -18,6 +18,7 @@
   - [x] [Jenkins: From DevOps Beginners to Advanced](https://www.udemy.com/course/decodingdevops)
   - [x] [GitHub Actions - The Complete Guide](https://www.udemy.com/course/github-actions-the-complete-guide)
   - [x] [GitLab CI/CD: Pipelines, CI/CD and DevOps for Beginners](https://www.udemy.com/course/gitlab-ci-pipelines-ci-cd-and-devops-for-beginners)
+  - [ ] [Azure Devops Crash Course -Build CI-CD release pipelines](https://www.udemy.com/course/azure-devops-fundamental)
 ---
 
 - MLOps
